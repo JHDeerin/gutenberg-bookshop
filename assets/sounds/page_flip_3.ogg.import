@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/page_flip_3.ogg-c4b5e7048258875f32e21605000209ff.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/page_flip_3.ogg"
+dest_files=[ "res://.import/page_flip_3.ogg-c4b5e7048258875f32e21605000209ff.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

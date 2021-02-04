@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/models/Bookshelf_Short.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/materials/bookcase_wood.tres" type="Material" id=2]
+[ext_resource path="res://scripts/BookshelfPositions.gd" type="Script" id=3]
+
+[sub_resource type="ConcavePolygonShape" id=1]
+data = PoolVector3Array( -1, 0.22, -1, -1, -1, 1, -1, -1, -1, -1, 0.22, -1, -1, 0.22, 1, -1, -1, 1, 1, 0.22, -1, -1, -1, -1, 1, -1, -1, 1, 0.22, -1, -1, 0.22, -1, -1, -1, -1, 1, 0.22, 1, 1, -1, -1, 1, -1, 1, 1, 0.22, 1, 1, 0.22, -1, 1, -1, -1, -1, 0.22, 1, 1, -1, 1, -1, -1, 1, -1, 0.22, 1, 1, 0.22, 1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 0.22, 1, -1, 0.22, -1, 1, 0.22, -1, 1, 0.22, 1, -1, 0.22, 1, -1, 0.22, -1 )
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( -1, 0.22, -1, -1, -1, 1, -1, -1, -1, -1, 0.22, -1, -1, 0.22, 1, -1, -1, 1, 1, 0.22, -1, -1, -1, -1, 1, -1, -1, 1, 0.22, -1, -1, 0.22, -1, -1, -1, -1, 1, 0.22, 1, 1, -1, -1, 1, -1, 1, 1, 0.22, 1, 1, 0.22, -1, 1, -1, -1, -1, 0.22, 1, 1, -1, 1, -1, -1, 1, -1, 0.22, 1, 1, 0.22, 1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 0.22, 1, -1, 0.22, -1, 1, 0.22, -1, 1, 0.22, 1, -1, 0.22, 1, -1, 0.22, -1 )
+
+[node name="Bookshelf_Short" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+num_rows = 3
+book_spacing = 0.095
+row_spacing = 0.36
+
+[node name="Shelf_Side009" parent="." index="0"]
+transform = Transform( 0.025, 0, 0, 0, 1, 0, 0, 0, 0.175, 0, 1, 0 )
+material_override = ExtResource( 2 )
+use_in_baked_light = true
+
+[node name="StaticBody" type="StaticBody" parent="Shelf_Side009" index="0"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Shelf_Side009/StaticBody" index="0"]
+shape = SubResource( 1 )
+
+[node name="Shelf_Side010" parent="." index="1"]
+transform = Transform( 0.025, 0, 0, 0, 1, 0, 0, 0, 0.175, 1, 1, 0 )
+material_override = ExtResource( 2 )
+use_in_baked_light = true
+
+[node name="StaticBody" type="StaticBody" parent="Shelf_Side010" index="0"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Shelf_Side010/StaticBody" index="0"]
+shape = SubResource( 2 )
+
+[node name="Shelf_Bottom001" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.05, -0.005 )
+material_override = ExtResource( 2 )
+use_in_baked_light = true
+
+[node name="Shelf_Divider001" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.45, -0.005 )
+material_override = ExtResource( 2 )
+use_in_baked_light = true
+
+[node name="BookStartPosition" type="Spatial" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 1, -0.02 )

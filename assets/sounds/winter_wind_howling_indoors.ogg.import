@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/winter_wind_howling_indoors.ogg-af3403ecc9bb89fc1ec0d615081b2d5e.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/winter_wind_howling_indoors.ogg"
+dest_files=[ "res://.import/winter_wind_howling_indoors.ogg-af3403ecc9bb89fc1ec0d615081b2d5e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

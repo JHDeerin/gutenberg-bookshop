@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/234288__leosalom__fireplace.ogg-1abffc670bf4f4826e34faaf77922e4a.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/234288__leosalom__fireplace.ogg"
+dest_files=[ "res://.import/234288__leosalom__fireplace.ogg-1abffc670bf4f4826e34faaf77922e4a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

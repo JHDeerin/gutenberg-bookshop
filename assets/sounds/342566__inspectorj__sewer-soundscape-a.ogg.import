@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/342566__inspectorj__sewer-soundscape-a.ogg-16e2613f5938085faecf6ebe60bac62f.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/342566__inspectorj__sewer-soundscape-a.ogg"
+dest_files=[ "res://.import/342566__inspectorj__sewer-soundscape-a.ogg-16e2613f5938085faecf6ebe60bac62f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
