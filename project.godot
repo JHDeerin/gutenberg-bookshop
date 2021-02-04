@@ -22,6 +22,7 @@ _global_script_class_icons={
 
 config/name="Gutenberg's Bookshop"
 run/main_scene="res://scenes/GutenbergBookshop.tscn"
+config/icon="res://assets/images/book_icon.png"
 
 [input]
 
