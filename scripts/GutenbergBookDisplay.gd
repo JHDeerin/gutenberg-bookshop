@@ -17,11 +17,6 @@ func _ready():
 	page_turn_sound = $PageTurnSound
 
 
-func _process(_delta):
-	if self.visible:
-		update_book_page(book_text_label, page_count_label)
-
-
 func open_book():
 	self.visible = true
 	book_open_sound.play_random_sound()
@@ -30,13 +25,17 @@ func open_book():
 func close_book():
 	self.visible = false
 	book_open_sound.play_random_sound()
+	
+
+func set_book_text(new_text: String):
+	book_text_label.text = new_text
+	update_book_page(book_text_label, page_count_label)
 
 
 func flip_page(is_flipping_right: bool):
 	"""
 	Flips the text of the book forwards/backwards to the next page of content
 	"""
-	# TODO: Refactor this so these actions are being done on the object itself?
 	if is_flipping_right:
 		book_text_label.lines_skipped += book_text_label.max_lines_visible
 		book_text_scroll.scroll_vertical = 0
@@ -45,6 +44,7 @@ func flip_page(is_flipping_right: bool):
 		# Beginning of page if we're already on the first page, else to the end
 		book_text_scroll.scroll_vertical = 1e9 if book_text_label.lines_skipped >= 0 else 0
 	page_turn_sound.play_random_sound()
+	update_book_page(book_text_label, page_count_label)
 
 
 func update_book_page(book_text: Label, page_count: Label):

@@ -1,7 +1,7 @@
 extends HTTPRequest
 
 
-var book_text_label
+var book_display
 var _possible_urls
 var _current_url_index
 
@@ -12,7 +12,7 @@ var _currently_loading_book_id = null
 func _ready():
 	self.connect("request_completed", self, "_handle_book_download")
 	# TODO: Pass this responsibility to someone else?
-	book_text_label = get_parent().get_node("GutenbergBookDisplay/MarginContainer/ScrollContainer/Label")
+	book_display = get_parent().get_node("GutenbergBookDisplay")
 
 func get_ebook_zip_urls(ebook_id):
 	var BASE_URL = "https://www.gutenberg.org"
@@ -48,7 +48,7 @@ func download_ebook_text(ebook_id):
 	_currently_loading_book_id = ebook_id
 	_possible_urls = get_ebook_zip_urls(ebook_id)
 
-	book_text_label.text = "Loading..."
+	book_display.set_book_text("Loading...")
 	# Try all known possible URL combinations
 	for i in _possible_urls.size():
 		_current_url_index = i
@@ -58,10 +58,9 @@ func download_ebook_text(ebook_id):
 			# TODO: Refactor out break?
 			return
 		print("ERROR: Code %d with %s!" % [error, url])
-		book_text_label.text = "ERROR"
 	# TODO: How to return when work is done in callback?
 	# Should return before this point if download is made
-	book_text_label.text = "Failed to download book :("
+	book_display.set_book_text("Failed to download book :(")
 	
 	
 func remove_project_gutenberg_headers_footers(ebook_text):
@@ -101,7 +100,7 @@ func remove_project_gutenberg_headers_footers(ebook_text):
 func _handle_book_download(result, response_code, headers, body):
 	if not result == RESULT_SUCCESS:
 		print("Error %d (code %d) occurred while downloading book text :(" % [result, response_code])
-		book_text_label.text = "ERROR"
+		book_display.set_book_text("ERROR")
 		_make_new_request()
 		return
 	
@@ -124,7 +123,7 @@ func _handle_book_download(result, response_code, headers, body):
 		return
 
 	book_text = remove_project_gutenberg_headers_footers(book_text)
-	book_text_label.text = book_text
+	book_display.set_book_text(book_text)
 	
 	_last_loaded_book_id = _currently_loading_book_id
 	_currently_loading_book_id = null
@@ -138,5 +137,5 @@ func _make_new_request():
 
 	print("No correct url found for %d!" % _currently_loading_book_id)
 	_currently_loading_book_id = null
-	book_text_label.text = "Failed to download book :("
+	book_display.set_book_text("Failed to download book :(")
 
