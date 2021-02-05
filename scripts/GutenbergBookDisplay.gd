@@ -47,14 +47,14 @@ func flip_page(is_flipping_right: bool):
 	page_turn_sound.play_random_sound()
 
 
-func update_book_page(book_text_label: Label, page_count_label: Label):
+func update_book_page(book_text: Label, page_count: Label):
 	"""
 	Update the page of the currently displayed book
 	"""
-	var max_page = ceil(float(book_text_label.get_line_count() + 1) / book_text_label.max_lines_visible)
+	var max_page = ceil(float(book_text.get_line_count() + 1) / book_text.max_lines_visible)
 
-	book_text_label.lines_skipped = int(clamp(book_text_label.lines_skipped,
-		0, (max_page-1) * book_text_label.max_lines_visible))
-	var current_page = ceil(float(book_text_label.lines_skipped + 1) / book_text_label.max_lines_visible)
+	book_text.lines_skipped = int(clamp(book_text.lines_skipped,
+		0, (max_page-1) * book_text.max_lines_visible))
+	var current_page = ceil(float(book_text.lines_skipped + 1) / book_text.max_lines_visible)
 	
-	page_count_label.text = "Page %d/%d" % [current_page, max_page]
+	page_count.text = "Page %d/%d" % [current_page, max_page]

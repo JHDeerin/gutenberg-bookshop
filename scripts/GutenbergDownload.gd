@@ -9,10 +9,10 @@ var _last_loaded_book_id = null
 var _currently_loading_book_id = null
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("request_completed", self, "_handle_book_download")
-	book_text_label = get_parent().get_parent().get_node("HUD/GutenbergBookDisplay/MarginContainer/ScrollContainer/Label")
+	# TODO: Pass this responsibility to someone else?
+	book_text_label = get_parent().get_node("GutenbergBookDisplay/MarginContainer/ScrollContainer/Label")
 
 func get_ebook_zip_urls(ebook_id):
 	var BASE_URL = "https://www.gutenberg.org"

@@ -6,8 +6,7 @@ var description_label
 
 func _ready():
 	book_display = $GutenbergBookDisplay
-	# TODO: Remove this parent dependency
-	book_downloader = get_parent().get_node("BookManagement/HTTPRequest")
+	book_downloader = $BookDownloader
 	description_label = $ShortDescription
 
 
