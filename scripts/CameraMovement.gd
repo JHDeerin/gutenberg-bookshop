@@ -37,7 +37,6 @@ func _physics_process(delta):
 		falling_speed = 0.0
 	var gravity = falling_speed * Vector3(0, -1, 0)
 	self.move_and_slide(move_dir * move_speed + gravity, Vector3(0, 1, 0), true)
-	# self.global_translate(move_dir * move_speed * delta)
 
 	detect_selected_book(delta)
 

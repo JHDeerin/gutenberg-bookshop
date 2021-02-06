@@ -15,16 +15,17 @@ func set_description(description: String):
 
 
 func _process(_delta):
-	if book_display.visible and Input.is_action_just_pressed("ui_cancel"):
-		book_display.close_book()
-	
-	if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
+	if not book_display.visible:
 		return
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		book_display.close_book()
 	
 	if Input.is_action_just_pressed("ui_right"):
 		book_display.flip_page(true)
 	if Input.is_action_just_pressed("ui_left"):
 		book_display.flip_page(false)
+
 
 func display_book(book_id: int):
 	book_display.open_book()

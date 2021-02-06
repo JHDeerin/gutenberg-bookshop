@@ -12,8 +12,9 @@ var collider_to_book_id = {}
 var book_metadata = {}
 var book_ids
 var num_books = 0
-# TODO: Need to store this separately since Godot doesn't record it when num meshes is updated dynamically
+# NOTE: Need to store this separately since Godot doesn't record it when num meshes is updated dynamically
 var mesh_instance_info = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,20 +29,8 @@ func _ready():
 	for bookshelf in bookshelves.get_children():
 		add_books(bookshelf.get_bookshelf_positions())
 	print("Num books: ", num_books)
-	# add_book_grid(MAX_NUM_BOOKS, grid_size, x_spacing, y_spacing)
 
-func add_book_grid(num_new_books, grid_row_size=100, x_spacing=0.1, y_spacing=0.32):
-	"""
-	Creates a flat 2D grid of book meshes
-	"""
-	for i in range(num_new_books):
-		var x = i % grid_row_size
-		var y = i / grid_row_size
-		var book_transform = self.transform
-		book_transform = book_transform.translated(Vector3(x * x_spacing, 0.0, y * y_spacing))
-		
-		add_book(book_transform, i == num_new_books-1)
-		
+
 func add_books(book_transforms, do_rerender=true):
 	"""
 	Adds a series of new books, then re-renders the MultiMesh
@@ -51,6 +40,7 @@ func add_books(book_transforms, do_rerender=true):
 		counter += 1
 		var is_last_book = counter == book_transforms.size()
 		add_book(book_transform, do_rerender and is_last_book)
+
 
 func add_book(book_transform, do_rerender=true):
 	"""
@@ -71,7 +61,8 @@ func add_book(book_transform, do_rerender=true):
 	for mesh_id in range(num_books):
 		book_meshes.multimesh.set_instance_transform(mesh_id, self.mesh_instance_info[mesh_id]["transform"])
 		book_meshes.multimesh.set_instance_color(mesh_id, self.mesh_instance_info[mesh_id]["color"])
-	
+
+
 func _add_book_mesh(mesh_id, book_id, book_transform):
 	"""
 	Adds the given book as a static, collidable mesh to the game world 
@@ -107,11 +98,13 @@ func _load_book_metadata(metadata_path="res://catalog_short.json"):
 		print("Error occurred while parsing ebook metadata JSON")
 	return {}
 
+
 class BookAuthorSorter:
 		static func sort(a, b):
 			if a["author"] == b["author"]:
 				return a["title"] < b["title"]
 			return a["author"] < b["author"]
+
 
 func get_sorted_book_ids():
 	"""
@@ -132,26 +125,29 @@ func get_sorted_book_ids():
 
 	return sorted_book_ids
 
+
 func get_book_title(collider_id: int):
 	"""
 	Return the title of a book given it's collider that's been hit
 	"""
 	var book_id = self.get_book_id_from_collider(collider_id)
 	if not book_id:
-		# print("WARNING: Collider ", collider_id, " has no corresponding book")
+		# Collider has no corresponding book")
 		return ""
 		
 	var book_info = self.get_book_info(book_id)
 	if not book_info:
-		# print("WARNING: No Project Gutenberg entry for book ", book_id)
+		# No Project Gutenberg entry for book
 		return "UNKNOWN"
 
 	return book_info["title"]
+
 
 func get_book_id_from_collider(collider_id: int):
 	if collider_to_book_id.has(collider_id):
 		return collider_to_book_id[collider_id]
 	return null
+
 
 func get_book_info(book_id: int):
 	var str_book_id = str(book_id)
