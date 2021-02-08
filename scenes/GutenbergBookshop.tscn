@@ -771,3 +771,4 @@ attenuation_filter_db = -12.0
 
 [node name="OutsideGround" parent="BackgroundScenery" instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -16.7477, -6.68818, 3.97613 )
+[connection signal="update_book_text" from="HUD/BookDownloader" to="HUD" method="_on_BookDownloader_update_book_text"]

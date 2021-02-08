@@ -89,6 +89,7 @@ func detect_selected_book(_delta):
 	"""
 	Checks if the player is pointing at a book within touching range, and
 	updates the HUD appropriately
+	TODO: Refactor this to avoid the dependencies on HUD/Book Manager
 	"""
 	hud.set_description("")
 	current_book_id = null

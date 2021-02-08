@@ -16,6 +16,14 @@ func set_description(description: String):
 	Set the description text beneath the crosshair
 	"""
 	description_label.text = description
+	
+	
+func set_book_text(new_text: String):
+	"""
+	Updates the text of the currently-open book
+	TODO: Pass-through method, possibly refactor?
+	"""
+	book_display.set_book_text(new_text)
 
 
 func open_book(book_id: int):
@@ -42,3 +50,7 @@ func flip_book_page(is_flip_direction_right: bool):
 	"""
 	if is_book_open:
 		book_display.flip_page(is_flip_direction_right)
+
+
+func _on_BookDownloader_update_book_text(new_text):
+	self.set_book_text(new_text)
