@@ -23,22 +23,19 @@ func _ready():
 	camera = $Camera
 	ray = $Camera/RayCast
 	ray.cast_to = Vector3(0.0, -1.0 * READING_DISTANCE, 0.0)
+	
+	# TODO: Remove these dependencies
 	book_manager = get_parent().get_node("BookManagement")
 	hud = get_parent().get_node("HUD")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+
 func _physics_process(delta):
 	handle_user_input(delta)
-	
-	var move_speed = SPRINT_SPEED if is_sprinting else SPEED
-	falling_speed += GRAVITY * delta
-	if self.is_on_floor():
-		falling_speed = 0.0
-	var gravity = falling_speed * Vector3(0, -1, 0)
-	self.move_and_slide(move_dir * move_speed + gravity, Vector3(0, 1, 0), true)
-
+	update_player_position(delta)
 	detect_selected_book(delta)
+
 
 func handle_user_input(_delta):
 	move_dir = Vector3()
@@ -85,6 +82,15 @@ func handle_user_input(_delta):
 			hud.flip_book_page(false)
 
 
+func update_player_position(delta):
+	var move_speed = SPRINT_SPEED if is_sprinting else SPEED
+	falling_speed += GRAVITY * delta
+	if self.is_on_floor():
+		falling_speed = 0.0
+	var gravity = falling_speed * Vector3(0, -1, 0)
+	self.move_and_slide(move_dir * move_speed + gravity, Vector3(0, 1, 0), true)
+
+
 func detect_selected_book(_delta):
 	"""
 	Checks if the player is pointing at a book within touching range, and
@@ -98,6 +104,7 @@ func detect_selected_book(_delta):
 
 		hud.set_description(book_manager.get_book_title(collider_id))
 		current_book_id = book_manager.get_book_id_from_collider(collider_id)
+
 
 func _input(event):
 	if not (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
