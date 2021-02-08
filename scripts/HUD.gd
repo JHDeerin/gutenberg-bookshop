@@ -3,6 +3,7 @@ extends Control
 var book_display
 var book_downloader
 var description_label
+var is_book_open = false
 
 func _ready():
 	book_display = $GutenbergBookDisplay
@@ -11,25 +12,18 @@ func _ready():
 
 
 func set_description(description: String):
+	"""
+	Set the description text beneath the crosshair
+	"""
 	description_label.text = description
 
 
-func _process(_delta):
-	if not book_display.visible:
-		return
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		book_display.close_book()
-	
-	if Input.is_action_just_pressed("ui_right"):
-		book_display.flip_page(true)
-	if Input.is_action_just_pressed("ui_left"):
-		book_display.flip_page(false)
-
-
-func display_book(book_id: int):
+func open_book(book_id: int):
+	"""
+	Opens the book with the given ID and displays its content on the HUD
+	"""
+	is_book_open = true
 	book_display.open_book()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	print("Displaying ", book_id)
 	book_downloader.download_ebook_text(book_id)
@@ -37,4 +31,14 @@ func display_book(book_id: int):
 
 func close_book():
 	book_display.close_book()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	is_book_open = false
+	
+
+func flip_book_page(is_flip_direction_right: bool):
+	"""
+	Flips the page of the currently opened book to the left/right, based on the
+	input boolean
+	TODO: Possibly refactor since this is just a pass-through function atm?
+	"""
+	if is_book_open:
+		book_display.flip_page(is_flip_direction_right)

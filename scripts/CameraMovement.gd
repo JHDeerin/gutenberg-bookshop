@@ -15,7 +15,7 @@ var current_book_id = null
 var ray
 var camera
 var book_manager
-var gui
+var hud
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +24,7 @@ func _ready():
 	ray = $Camera/RayCast
 	ray.cast_to = Vector3(0.0, -1.0 * READING_DISTANCE, 0.0)
 	book_manager = get_parent().get_node("BookManagement")
-	gui = get_parent().get_node("HUD")
+	hud = get_parent().get_node("HUD")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -68,24 +68,34 @@ func handle_user_input(_delta):
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			if hud.is_book_open:
+				hud.close_book()
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and current_book_id and Input.is_action_just_pressed("open_book"):
-		gui.display_book(current_book_id)
+		hud.open_book(current_book_id)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
+	if hud.is_book_open:
+		if Input.is_action_just_pressed("ui_right"):
+			hud.flip_book_page(true)
+		if Input.is_action_just_pressed("ui_left"):
+			hud.flip_book_page(false)
+
+
 func detect_selected_book(_delta):
 	"""
 	Checks if the player is pointing at a book within touching range, and
-	updates the GUI appropriately
+	updates the HUD appropriately
 	"""
-	gui.set_description("")
+	hud.set_description("")
 	current_book_id = null
 	if ray.is_colliding() and ray.get_collision_point().distance_to(self.translation) < READING_DISTANCE:
 		var collider_id = ray.get_collider().get_instance_id()
 
-		gui.set_description(book_manager.get_book_title(collider_id))
+		hud.set_description(book_manager.get_book_title(collider_id))
 		current_book_id = book_manager.get_book_id_from_collider(collider_id)
 
 func _input(event):
