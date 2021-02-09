@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://assets/models/Book.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/materials/Book Material.tres" type="Material" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/Bookshelf_Short.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/images/TownCutoutLit.png" type="Texture" id=16]
 [ext_resource path="res://assets/images/TownCutoutLit_Darker.png" type="Texture" id=17]
+[ext_resource path="res://scenes/SmokePipe.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/images/TownCutout.png" type="Texture" id=25]
 [ext_resource path="res://assets/sounds/winter_wind_howling_indoors.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/342566__inspectorj__sewer-soundscape-a.ogg" type="AudioStream" id=27]
@@ -124,7 +125,7 @@ curve = SubResource( 14 )
 
 [sub_resource type="ParticlesMaterial" id=16]
 emission_shape = 1
-emission_sphere_radius = 0.02
+emission_sphere_radius = 0.1
 direction = Vector3( 0, 1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
@@ -135,7 +136,6 @@ linear_accel = 0.4
 linear_accel_random = 1.0
 angle = 360.0
 angle_random = 1.0
-scale = 0.1
 scale_random = 0.8
 scale_curve = SubResource( 15 )
 color_ramp = SubResource( 13 )
@@ -637,18 +637,6 @@ draw_order = 2
 process_material = SubResource( 9 )
 draw_pass_1 = SubResource( 11 )
 
-[node name="SmokeParticles" type="Particles" parent="BookshopTest/EntranceStairs/Firelight/FireParticles"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.282338, 0 )
-visible = false
-amount = 50
-preprocess = 1.0
-speed_scale = 0.7
-randomness = 1.0
-local_coords = false
-draw_order = 2
-process_material = SubResource( 16 )
-draw_pass_1 = SubResource( 18 )
-
 [node name="Log" parent="BookshopTest/EntranceStairs/Firelight/FireParticles" instance=ExtResource( 3 )]
 transform = Transform( -0.831595, 0, 0.555382, 0, 1, 0, -0.555382, 0, -0.831595, 0.0348263, 0.0382586, -0.021812 )
 
@@ -688,6 +676,21 @@ transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 9.57273
 stream = ExtResource( 27 )
 attenuation_model = 1
 autoplay = true
+
+[node name="SmokePipe" parent="BookshopTest" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 3.69482e-13, 0, 1, 0, -3.69482e-13, 0, 1, -9.78615, 3, 6.65053 )
+
+[node name="SmokeParticles" type="Particles" parent="BookshopTest/SmokePipe"]
+transform = Transform( 1, 0, -3.69482e-13, 0, 1, 0, 3.69482e-13, 0, 1, -0.369574, 0.578662, 1.33514e-05 )
+amount = 100
+lifetime = 2.0
+preprocess = 3.0
+speed_scale = 0.7
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 16 )
+draw_pass_1 = SubResource( 18 )
 
 [node name="BackgroundScenery" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0597, 6.70037, 0 )
