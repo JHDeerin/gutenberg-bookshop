@@ -36,6 +36,15 @@ func open_book(book_id: int):
 	
 	print("Displaying ", book_id)
 	book_downloader.download_ebook_text(book_id)
+	
+	
+func open_text(text: String):
+	"""
+	Displays a string of text on the HUD that isn't a specific book
+	"""
+	is_book_open = true
+	book_display.open_book()
+	self.set_book_text(text)
 
 
 func close_book():
