@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://assets/models/Book.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/materials/Book Material.tres" type="Material" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://scenes/CandleLamp_Lit.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Chair.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Bookshelf_Short.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/images/TownCutoutLit.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/TownCutoutLit_Darker.png" type="Texture" id=17]
 [ext_resource path="res://assets/images/TownCutout.png" type="Texture" id=25]
 [ext_resource path="res://assets/sounds/winter_wind_howling_indoors.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/342566__inspectorj__sewer-soundscape-a.ogg" type="AudioStream" id=27]
@@ -693,8 +695,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0597, 6.70037, 0 )
 [node name="TownBillboard" type="Sprite3D" parent="BackgroundScenery"]
 transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, -0.0151329, 0.334807, 0 )
 use_in_baked_light = true
-modulate = Color( 0.454902, 0.74902, 0.960784, 1 )
-texture = ExtResource( 25 )
+texture = ExtResource( 16 )
 
 [node name="TownBillboard2" type="Sprite3D" parent="BackgroundScenery/TownBillboard"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 14.0701, 0, -3.75458 )
@@ -712,8 +713,7 @@ texture = ExtResource( 25 )
 transform = Transform( -3.25841e-07, 0, 2, 0, 2, 0, -2, 0, -3.25841e-07, 3.214, 1.52261, -1.51787 )
 use_in_baked_light = true
 flip_h = true
-modulate = Color( 0.235294, 0.388235, 0.501961, 1 )
-texture = ExtResource( 25 )
+texture = ExtResource( 17 )
 
 [node name="TownBillboard2" type="Sprite3D" parent="BackgroundScenery/TownBillboard2"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 14.0701, 0, -3.75458 )

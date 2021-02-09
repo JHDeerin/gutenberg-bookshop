@@ -9,6 +9,7 @@ func _ready():
 	book_display = $GutenbergBookDisplay
 	book_downloader = $BookDownloader
 	description_label = $ShortDescription
+	self.set_description("")
 
 
 func set_description(description: String):
@@ -46,7 +47,6 @@ func flip_book_page(is_flip_direction_right: bool):
 	"""
 	Flips the page of the currently opened book to the left/right, based on the
 	input boolean
-	TODO: Possibly refactor since this is just a pass-through function atm?
 	"""
 	if is_book_open:
 		book_display.flip_page(is_flip_direction_right)
