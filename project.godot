@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "BookshelfPositions",
 "language": "GDScript",
 "path": "res://scripts/BookshelfPositions.gd"
+}, {
+"base": "SelectableItem",
+"class": "SelectableBook",
+"language": "GDScript",
+"path": "res://scripts/SelectableBook.gd"
+}, {
+"base": "Spatial",
+"class": "SelectableItem",
+"language": "GDScript",
+"path": "res://scripts/SelectableItem.gd"
 } ]
 _global_script_class_icons={
-"BookshelfPositions": ""
+"BookshelfPositions": "",
+"SelectableBook": "",
+"SelectableItem": ""
 }
 
 [application]

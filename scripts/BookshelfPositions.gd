@@ -1,6 +1,5 @@
-extends Spatial
-
 class_name BookshelfPositions
+extends Spatial
 
 export var num_rows = 6
 export var books_per_row = 10

@@ -14,7 +14,6 @@ var current_book_id = null
 
 var ray
 var camera
-var book_manager
 var hud
 
 
@@ -25,7 +24,6 @@ func _ready():
 	ray.cast_to = Vector3(0.0, -1.0 * READING_DISTANCE, 0.0)
 	
 	# TODO: Remove these dependencies
-	book_manager = get_parent().get_node("BookManagement")
 	hud = get_parent().get_node("HUD")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -34,7 +32,7 @@ func _ready():
 func _physics_process(delta):
 	handle_user_input(delta)
 	update_player_position(delta)
-	detect_selected_book(delta)
+	handle_item_selection(delta)
 
 
 func handle_user_input(_delta):
@@ -91,19 +89,20 @@ func update_player_position(delta):
 	self.move_and_slide(move_dir * move_speed + gravity, Vector3(0, 1, 0), true)
 
 
-func detect_selected_book(_delta):
+func handle_item_selection(_delta):
 	"""
-	Checks if the player is pointing at a book within touching range, and
-	updates the HUD appropriately
-	TODO: Refactor this to avoid the dependencies on HUD/Book Manager
+	Checks if the player is pointing at an item within touching range, and
+	calls the selection method on that item
+	TODO: Refactor this to avoid the dependencies on HUD?
 	"""
 	hud.set_description("")
 	current_book_id = null
-	if ray.is_colliding() and ray.get_collision_point().distance_to(self.translation) < READING_DISTANCE:
-		var collider_id = ray.get_collider().get_instance_id()
-
-		hud.set_description(book_manager.get_book_title(collider_id))
-		current_book_id = book_manager.get_book_id_from_collider(collider_id)
+	if ray.is_colliding() and ray.get_collider() is SelectableItem:
+		var item = ray.get_collider()
+		
+		item.on_item_selected()
+		if item is SelectableBook:
+			current_book_id = item.book_id
 
 
 func _input(event):

@@ -7,8 +7,8 @@ export var MAX_NUM_BOOKS = 3500
 
 var book_meshes
 var book_collision_shape
+var book_selection_script = load("res://scripts/SelectableBook.gd")
 
-var collider_to_book_id = {}
 var book_metadata = {}
 var book_ids
 var num_books = 0
@@ -72,13 +72,14 @@ func _add_book_mesh(mesh_id, book_id, book_transform):
 	var collider = CollisionShape.new()
 	collider.shape = self.book_collision_shape
 
-	var collider_node = StaticBody.new()
-	collider_node.transform = book_transform
-	collider_node.add_child(collider)
-	book_meshes.add_child(collider_node)
-	
-	collider_to_book_id[collider_node.get_instance_id()] = book_id
+	var book_collider_node = StaticBody.new()
+	book_collider_node.transform = book_transform
+	book_collider_node.add_child(collider)
+	book_collider_node.set_script(book_selection_script)
+	self.add_child(book_collider_node)
 
+	book_collider_node.set_book_info(book_id, get_book_title(book_id))
+	
 	# Randomize the book color
 	seed(book_id)
 	var book_color = Color.from_hsv(randf(), clamp(randf(), 0.0, 0.5), clamp(randf(), 0.5, 1.0))
@@ -126,27 +127,16 @@ func get_sorted_book_ids():
 	return sorted_book_ids
 
 
-func get_book_title(collider_id: int):
+func get_book_title(book_id: int):
 	"""
 	Return the title of a book given it's collider that's been hit
 	"""
-	var book_id = self.get_book_id_from_collider(collider_id)
-	if not book_id:
-		# Collider has no corresponding book")
-		return ""
-		
 	var book_info = self.get_book_info(book_id)
 	if not book_info:
 		# No Project Gutenberg entry for book
 		return "UNKNOWN"
 
 	return book_info["title"]
-
-
-func get_book_id_from_collider(collider_id: int):
-	if collider_to_book_id.has(collider_id):
-		return collider_to_book_id[collider_id]
-	return null
 
 
 func get_book_info(book_id: int):
