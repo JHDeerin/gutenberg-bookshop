@@ -26,3 +26,7 @@ func on_item_selected():
 
 func on_item_use():
 	.on_item_use()
+	hud.open_book(self.book_id)
+	# TODO: Determine if this should go here (I think yes, because it's an
+	# and not *really* an input?)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

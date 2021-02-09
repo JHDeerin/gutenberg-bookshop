@@ -10,7 +10,6 @@ export var READING_DISTANCE = 2.0
 var move_dir = Vector3(0.0, 0, 0)
 var falling_speed = 0.0
 var is_sprinting = false
-var current_book_id = null
 
 var ray
 var camera
@@ -69,9 +68,10 @@ func handle_user_input(_delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and current_book_id and Input.is_action_just_pressed("open_book"):
-		hud.open_book(current_book_id)
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and Input.is_action_just_pressed("use_item"):
+		if ray.is_colliding() and ray.get_collider() is SelectableItem:
+			var item = ray.get_collider()
+			item.on_item_use()
 		
 	if hud.is_book_open:
 		if Input.is_action_just_pressed("ui_right"):
@@ -96,13 +96,9 @@ func handle_item_selection(_delta):
 	TODO: Refactor this to avoid the dependencies on HUD?
 	"""
 	hud.set_description("")
-	current_book_id = null
 	if ray.is_colliding() and ray.get_collider() is SelectableItem:
 		var item = ray.get_collider()
-		
 		item.on_item_selected()
-		if item is SelectableBook:
-			current_book_id = item.book_id
 
 
 func _input(event):
