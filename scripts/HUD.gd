@@ -13,7 +13,9 @@ func _ready():
 	book_downloader = $BookDownloader
 	description_label = $ShortDescription
 	pause_menu = $PauseMenu
+
 	self.set_description("")
+	set_menu_mode(false)
 
 
 func set_description(description: String):
@@ -37,8 +39,7 @@ func open_book(book_id: int):
 	"""
 	is_book_open = true
 	book_display.open_book()
-	# TODO: Should this be here, or kept on Player.gd?
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	set_menu_mode(true)
 	
 	print("Displaying ", book_id)
 	book_downloader.download_ebook_text(book_id)
@@ -51,24 +52,35 @@ func open_text(text: String):
 	is_book_open = true
 	book_display.open_book()
 	self.set_book_text(text)
-	# TODO: Should this be here, or kept on Player.gd?
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	set_menu_mode(true)
 
 
 func close_book():
 	book_display.close_book()
 	is_book_open = false
-	
-	
+	set_menu_mode(false)
+
+
 func open_pause_menu():
 	is_game_paused = true
 	pause_menu.open_pause_menu()
-	
-	
+	set_menu_mode(true)
+
+
 func close_pause_menu():
 	pause_menu.close_pause_menu()
 	is_game_paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	set_menu_mode(false)
+
+
+func set_menu_mode(is_entering_menu: bool):
+	"""
+	Set if the player is currently in a menu, or not (i.e. in the 3D world) 
+	"""
+	if is_entering_menu:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func flip_book_page(is_flip_direction_right: bool):

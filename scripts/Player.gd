@@ -29,8 +29,6 @@ func _ready():
 	# TODO: Remove these dependencies
 	hud = get_parent().get_node("HUD")
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 
 func _physics_process(delta):
 	handle_user_input(delta)
@@ -48,10 +46,8 @@ func handle_user_input(_delta):
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if is_in_menu:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			emit_signal("menu_escape")
 		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			emit_signal("game_paused")
 	
 	if not is_in_menu and Input.is_action_just_pressed("use_item"):
