@@ -1,5 +1,8 @@
 extends KinematicBody
 
+signal menu_escape
+signal page_flip_attempt(is_flipping_right)
+
 export var MOUSE_SENSITIVITY = 0.5
 
 export var SPEED = 0.5
@@ -35,6 +38,29 @@ func _physics_process(delta):
 
 
 func handle_user_input(_delta):
+	var is_in_menu = Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE
+	if not is_in_menu:
+		self.handle_movement_input(_delta)
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if is_in_menu:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			emit_signal("menu_escape")
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	if not is_in_menu and Input.is_action_just_pressed("use_item"):
+		if ray.is_colliding() and ray.get_collider() is SelectableItem:
+			var item = ray.get_collider()
+			item.on_item_use()
+	
+	if Input.is_action_just_pressed("ui_right"):
+		emit_signal("page_flip_attempt", true)
+	if Input.is_action_just_pressed("ui_left"):
+		emit_signal("page_flip_attempt", false)
+
+
+func handle_movement_input(_delta):
 	move_dir = Vector3()
 	var cam_xform = camera.get_global_transform()
 
@@ -59,25 +85,6 @@ func handle_user_input(_delta):
 	move_dir = move_dir.normalized()
 	
 	is_sprinting =  Input.is_action_pressed("sprint")
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			if hud.is_book_open:
-				hud.close_book()
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and Input.is_action_just_pressed("use_item"):
-		if ray.is_colliding() and ray.get_collider() is SelectableItem:
-			var item = ray.get_collider()
-			item.on_item_use()
-		
-	if hud.is_book_open:
-		if Input.is_action_just_pressed("ui_right"):
-			hud.flip_book_page(true)
-		if Input.is_action_just_pressed("ui_left"):
-			hud.flip_book_page(false)
 
 
 func update_player_position(delta):

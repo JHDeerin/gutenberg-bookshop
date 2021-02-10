@@ -811,4 +811,6 @@ unit_size = 8.0
 autoplay = true
 attenuation_filter_cutoff_hz = 1000.0
 attenuation_filter_db = -12.0
+[connection signal="menu_escape" from="Player" to="HUD" method="_on_Player_menu_escape"]
+[connection signal="page_flip_attempt" from="Player" to="HUD" method="_on_Player_page_flip_attempt"]
 [connection signal="update_book_text" from="HUD/BookDownloader" to="HUD" method="_on_BookDownloader_update_book_text"]

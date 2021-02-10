@@ -33,6 +33,8 @@ func open_book(book_id: int):
 	"""
 	is_book_open = true
 	book_display.open_book()
+	# TODO: Should this be here, or kept on Player.gd?
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	print("Displaying ", book_id)
 	book_downloader.download_ebook_text(book_id)
@@ -63,3 +65,13 @@ func flip_book_page(is_flip_direction_right: bool):
 
 func _on_BookDownloader_update_book_text(new_text):
 	self.set_book_text(new_text)
+
+
+func _on_Player_menu_escape():
+	if self.is_book_open:
+		self.close_book()
+
+
+func _on_Player_page_flip_attempt(is_flipping_right):
+	if self.is_book_open:
+		self.flip_book_page(is_flipping_right)
