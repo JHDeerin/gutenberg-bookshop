@@ -1,22 +1,11 @@
 extends SelectableItem
 
 export(NodePath) var hud_path
+export(String, MULTILINE) var note_text = ""
+
 var hud
 
 var note_name = "Hey There!"
-var note_text = """
-Hey there, shoppers!
-
-I had to step outside for a bit, but
-please feel free to browse while I'm
-away for as long as you'd like. I'll
-be back soon if you want to buy
-anything - just don't take any books
-without me!
-
-Stay warm,
-- Mary (Owner, Manager, Janitor, etc.)
-"""
 
 
 func _ready():
