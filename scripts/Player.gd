@@ -1,6 +1,7 @@
 extends KinematicBody
 
 signal menu_escape
+signal game_paused
 signal page_flip_attempt(is_flipping_right)
 
 export var MOUSE_SENSITIVITY = 0.5
@@ -38,6 +39,9 @@ func _physics_process(delta):
 
 
 func handle_user_input(_delta):
+	"""
+	Handle all non-GUI related input from the user
+	"""
 	var is_in_menu = Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE
 	if not is_in_menu:
 		self.handle_movement_input(_delta)
@@ -48,6 +52,7 @@ func handle_user_input(_delta):
 			emit_signal("menu_escape")
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			emit_signal("game_paused")
 	
 	if not is_in_menu and Input.is_action_just_pressed("use_item"):
 		if ray.is_colliding() and ray.get_collider() is SelectableItem:

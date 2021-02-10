@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://assets/models/Book.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/materials/Book Material.tres" type="Material" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/SmokePipe.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/images/OwnerNote.png" type="Texture" id=19]
 [ext_resource path="res://scripts/SelectableNote.gd" type="Script" id=20]
+[ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/images/TownCutout.png" type="Texture" id=25]
 [ext_resource path="res://assets/sounds/winter_wind_howling_indoors.ogg" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/342566__inspectorj__sewer-soundscape-a.ogg" type="AudioStream" id=27]
@@ -268,6 +269,9 @@ __meta__ = {
 }
 
 [node name="GutenbergBookDisplay" parent="HUD" instance=ExtResource( 10 )]
+visible = false
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource( 21 )]
 visible = false
 
 [node name="BookDownloader" type="HTTPRequest" parent="HUD"]
@@ -811,6 +815,8 @@ unit_size = 8.0
 autoplay = true
 attenuation_filter_cutoff_hz = 1000.0
 attenuation_filter_db = -12.0
+[connection signal="game_paused" from="Player" to="HUD" method="_on_Player_game_paused"]
 [connection signal="menu_escape" from="Player" to="HUD" method="_on_Player_menu_escape"]
 [connection signal="page_flip_attempt" from="Player" to="HUD" method="_on_Player_page_flip_attempt"]
+[connection signal="resume_game" from="HUD/PauseMenu" to="HUD" method="_on_PauseMenu_resume_game"]
 [connection signal="update_book_text" from="HUD/BookDownloader" to="HUD" method="_on_BookDownloader_update_book_text"]
