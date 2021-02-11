@@ -819,4 +819,5 @@ attenuation_filter_db = -12.0
 [connection signal="menu_escape" from="Player" to="HUD" method="_on_Player_menu_escape"]
 [connection signal="page_flip_attempt" from="Player" to="HUD" method="_on_Player_page_flip_attempt"]
 [connection signal="resume_game" from="HUD/PauseMenu" to="HUD" method="_on_PauseMenu_resume_game"]
+[connection signal="update_mouse_sensitivity" from="HUD/PauseMenu" to="Player" method="_on_PauseMenu_update_mouse_sensitivity"]
 [connection signal="update_book_text" from="HUD/BookDownloader" to="HUD" method="_on_BookDownloader_update_book_text"]

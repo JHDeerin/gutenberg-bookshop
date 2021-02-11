@@ -117,3 +117,7 @@ func _input(event):
 	self.rotate_y(deg2rad(-event.relative.x * MOUSE_SENSITIVITY))
 
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -80, 80)
+
+
+func _on_PauseMenu_update_mouse_sensitivity(new_sensitivity):
+	MOUSE_SENSITIVITY = new_sensitivity

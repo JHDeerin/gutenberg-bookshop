@@ -34,6 +34,8 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 13
+size_flags_vertical = 13
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -62,14 +64,15 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="Volume" type="Label" parent="CenterContainer/VBoxContainer/VolumeHBox"]
-margin_right = 97.0
+margin_right = 99.0
 margin_bottom = 29.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Volume: "
 valign = 1
 
 [node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeHBox"]
-margin_left = 101.0
+margin_left = 103.0
 margin_top = 6.0
 margin_right = 203.0
 margin_bottom = 22.0
@@ -94,6 +97,7 @@ alignment = 1
 [node name="Sensitivity" type="Label" parent="CenterContainer/VBoxContainer/SensitivityHBox"]
 margin_right = 124.0
 margin_bottom = 29.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Sensitivity: "
 valign = 1
@@ -108,7 +112,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.05
-value = 1.0
+value = 0.5
 tick_count = 10
 ticks_on_borders = true
 
@@ -133,4 +137,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VolumeHBox/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/SensitivityHBox/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
