@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/georgia.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/PauseMenu.gd" type="Script" id=2]
@@ -8,6 +8,10 @@ size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 48
 font_data = ExtResource( 1 )
 
@@ -35,23 +39,83 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 463.0
-margin_top = 250.0
-margin_right = 561.0
-margin_bottom = 350.0
+margin_left = 410.0
+margin_top = 191.0
+margin_right = 613.0
+margin_bottom = 409.0
 custom_constants/separation = 30
 alignment = 1
 
 [node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 98.0
+margin_right = 203.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 1 )
 text = "Resume"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="VolumeHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 65.0
-margin_right = 98.0
-margin_bottom = 100.0
+margin_right = 203.0
+margin_bottom = 94.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Volume" type="Label" parent="CenterContainer/VBoxContainer/VolumeHBox"]
+margin_right = 97.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Volume: "
+valign = 1
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeHBox"]
+margin_left = 101.0
+margin_top = 6.0
+margin_right = 203.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="SensitivityHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 203.0
+margin_bottom = 153.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Sensitivity" type="Label" parent="CenterContainer/VBoxContainer/SensitivityHBox"]
+margin_right = 124.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Sensitivity: "
+valign = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="CenterContainer/VBoxContainer/SensitivityHBox"]
+margin_left = 128.0
+margin_top = 6.0
+margin_right = 203.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 75, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 183.0
+margin_right = 203.0
+margin_bottom = 218.0
 custom_fonts/font = SubResource( 1 )
 text = "Quit"
 
@@ -62,7 +126,7 @@ margin_left = -512.0
 margin_top = 30.0
 margin_right = 512.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Paused"
 align = 1
 __meta__ = {
