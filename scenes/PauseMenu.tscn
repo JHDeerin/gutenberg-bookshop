@@ -31,50 +31,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -472.0
+margin_top = -260.0
+margin_right = 472.0
+margin_bottom = 260.0
 size_flags_horizontal = 13
 size_flags_vertical = 13
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 410.0
-margin_top = 191.0
-margin_right = 613.0
-margin_bottom = 409.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 944.0
+margin_bottom = 520.0
+
+[node name="Spacer" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 312.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 316.0
+margin_right = 628.0
+margin_bottom = 520.0
+size_flags_horizontal = 7
+size_flags_vertical = 5
 custom_constants/separation = 30
 alignment = 1
 
-[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 203.0
-margin_bottom = 35.0
+[node name="Resume" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 151.0
+margin_right = 312.0
+margin_bottom = 186.0
 custom_fonts/font = SubResource( 1 )
 text = "Resume"
 
-[node name="VolumeHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 65.0
-margin_right = 203.0
-margin_bottom = 94.0
+[node name="VolumeHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 216.0
+margin_right = 312.0
+margin_bottom = 245.0
 grow_vertical = 0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 alignment = 1
 
-[node name="Volume" type="Label" parent="CenterContainer/VBoxContainer/VolumeHBox"]
-margin_right = 99.0
+[node name="Volume" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VolumeHBox"]
+margin_right = 154.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Volume: "
 valign = 1
 
-[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeHBox"]
-margin_left = 103.0
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/VolumeHBox"]
+margin_left = 158.0
 margin_top = 6.0
-margin_right = 203.0
+margin_right = 312.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
@@ -85,43 +103,51 @@ value = 1.0
 tick_count = 10
 ticks_on_borders = true
 
-[node name="SensitivityHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 124.0
-margin_right = 203.0
-margin_bottom = 153.0
+[node name="SensitivityHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 275.0
+margin_right = 312.0
+margin_bottom = 304.0
 grow_vertical = 0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 alignment = 1
 
-[node name="Sensitivity" type="Label" parent="CenterContainer/VBoxContainer/SensitivityHBox"]
-margin_right = 124.0
+[node name="Sensitivity" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SensitivityHBox"]
+margin_right = 154.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Sensitivity: "
 valign = 1
 
-[node name="SensitivitySlider" type="HSlider" parent="CenterContainer/VBoxContainer/SensitivityHBox"]
-margin_left = 128.0
+[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/SensitivityHBox"]
+margin_left = 158.0
 margin_top = 6.0
-margin_right = 203.0
+margin_right = 312.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
+min_value = 0.05
 max_value = 1.0
 step = 0.05
 value = 0.5
 tick_count = 10
 ticks_on_borders = true
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 183.0
-margin_right = 203.0
-margin_bottom = 218.0
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 334.0
+margin_right = 312.0
+margin_bottom = 369.0
 custom_fonts/font = SubResource( 1 )
 text = "Quit"
+
+[node name="Spacer2" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 632.0
+margin_right = 944.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
 
 [node name="Paused" type="Label" parent="."]
 anchor_left = 0.5
@@ -136,7 +162,7 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/VolumeHBox/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/SensitivityHBox/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/VolumeHBox/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/SensitivityHBox/SensitivitySlider" to="." method="_on_SensitivitySlider_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
