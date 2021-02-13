@@ -1,17 +1,35 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/fonts/georgia.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://scripts/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/keyboard_key.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/keyboard_key_half.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/mouse_icon.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 48
 font_data = ExtResource( 1 )
 
@@ -49,17 +67,341 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_right = 944.0
 margin_bottom = 520.0
+custom_constants/separation = 10
 
-[node name="Spacer" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-margin_right = 312.0
+[node name="ControlsBox" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 308.0
 margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 1, 1, 1, 0 )
+color = Color( 0, 0, 0, 0.196078 )
+
+[node name="ControlsHeader" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -62.0
+margin_top = 6.0
+margin_right = 62.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "Controls"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="Control" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -206.533
+margin_bottom = -206.533
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W_keyboard_key" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/Movement"]
+position = Vector2( 58.5748, 16 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Movement/W_keyboard_key"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "W"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S_keyboard_key2" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/Movement"]
+position = Vector2( 58.5748, 49.5951 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Movement/S_keyboard_key2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D_keyboard_key3" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/Movement"]
+position = Vector2( 91.8726, 49.5951 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Movement/D_keyboard_key3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A_keyboard_key4" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/Movement"]
+position = Vector2( 24.9797, 49.5951 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Movement/A_keyboard_key4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "A"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovementLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Movement"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -6.5421
+margin_top = 22.0208
+margin_right = 117.458
+margin_bottom = 51.0208
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Movement"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Look" type="Control" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -125.624
+margin_bottom = -125.624
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W_keyboard_key2" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/Look"]
+position = Vector2( 58.5748, 35 )
+texture = ExtResource( 5 )
+
+[node name="LookLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/Look"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -6.5421
+margin_top = 22.0208
+margin_right = 117.458
+margin_bottom = 51.0208
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Look Around"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenBook" type="Control" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -44.7158
+margin_bottom = -44.7158
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E_keyboard_key" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/OpenBook"]
+position = Vector2( 58.5748, 35.6219 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/OpenBook/E_keyboard_key"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "E"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/OpenBook"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -6.5421
+margin_top = 8.24777
+margin_right = 123.458
+margin_bottom = 69.2478
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Open Book"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseBook" type="Control" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 37.9223
+margin_bottom = 37.9223
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ESC_keyboard_key" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/CloseBook"]
+position = Vector2( 58.5748, 35.6219 )
+texture = ExtResource( 4 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/CloseBook/ESC_keyboard_key"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -16.0
+margin_right = -32.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "ESC"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LookLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/CloseBook"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -6.5421
+margin_top = 8.24777
+margin_right = 123.458
+margin_bottom = 69.2478
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Close Book/
+Pause"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlipPages" type="Control" parent="MarginContainer/HBoxContainer/ControlsBox"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 125.468
+margin_bottom = 125.468
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right_keyboard_key3" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/FlipPages"]
+position = Vector2( 77.0074, 38.0208 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/FlipPages/Right_keyboard_key3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = ">"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left_keyboard_key4" type="Sprite" parent="MarginContainer/HBoxContainer/ControlsBox/FlipPages"]
+position = Vector2( 42.5748, 38.0208 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Key Label" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/FlipPages/Left_keyboard_key4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = -32.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 0.588235 )
+text = "<"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LookLabel" type="Label" parent="MarginContainer/HBoxContainer/ControlsBox/FlipPages"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -6.5421
+margin_top = 22.0208
+margin_right = 117.458
+margin_bottom = 51.0208
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Flip Book Page"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 316.0
-margin_right = 628.0
+margin_left = 318.0
+margin_right = 626.0
 margin_bottom = 520.0
 size_flags_horizontal = 7
 size_flags_vertical = 5
@@ -68,31 +410,31 @@ alignment = 1
 
 [node name="Resume" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 151.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 186.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Resume"
 
 [node name="VolumeHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 216.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 245.0
 grow_vertical = 0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Volume" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VolumeHBox"]
-margin_right = 154.0
+margin_right = 152.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Volume: "
 valign = 1
 
 [node name="VolumeSlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/VolumeHBox"]
-margin_left = 158.0
+margin_left = 156.0
 margin_top = 6.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
@@ -105,24 +447,24 @@ ticks_on_borders = true
 
 [node name="SensitivityHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 275.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 304.0
 grow_vertical = 0
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Sensitivity" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SensitivityHBox"]
-margin_right = 154.0
+margin_right = 152.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Sensitivity: "
 valign = 1
 
 [node name="SensitivitySlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/SensitivityHBox"]
-margin_left = 158.0
+margin_left = 156.0
 margin_top = 6.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 75, 0 )
 size_flags_horizontal = 3
@@ -136,13 +478,13 @@ ticks_on_borders = true
 
 [node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 334.0
-margin_right = 312.0
+margin_right = 308.0
 margin_bottom = 369.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Quit"
 
 [node name="Spacer2" type="ColorRect" parent="MarginContainer/HBoxContainer"]
-margin_left = 632.0
+margin_left = 636.0
 margin_right = 944.0
 margin_bottom = 520.0
 size_flags_horizontal = 3
@@ -156,7 +498,7 @@ margin_left = -512.0
 margin_top = 30.0
 margin_right = 512.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Paused"
 align = 1
 __meta__ = {
